@@ -1,9 +1,12 @@
-const { bankResolvers } = require('./src/resolvers/bankResolvers');
+const { bankQueries, bankMutations } = require('./src/resolvers/bankResolvers');
 
 const resolvers = {
   Query: {
-    ...bankResolvers
+    ...bankQueries
   },
+  Mutation: {
+    ...bankMutations
+  }
 };
 
 module.exports = resolvers;

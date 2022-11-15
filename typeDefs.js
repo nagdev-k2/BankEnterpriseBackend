@@ -14,6 +14,10 @@ const typeDefs = gql`
     getAllBanks: [Bank]
     getBankDetails(bankId: ID!): Bank
   }
+
+  type Mutation {
+    createBank(bank: BankInput): String
+  }
 `;
 
 module.exports = typeDefs;

@@ -1,6 +1,6 @@
 const {connection} = require('../config/dbConnector');
 
-const bankResolvers = {
+const bankQueries = {
   async getAllBanks() {
     let res = [{BANK_ID: 'NA', BANK_NAME: 'NA'}]
     await connection.promise().query('select * from bank').then(([rows, fields]) => {
@@ -18,4 +18,18 @@ const bankResolvers = {
   },
 };
 
-module.exports = { bankResolvers };
+const bankMutations = {
+  async createBank(_, args) {
+    let res = 'No Data';
+    await connection.promise().query(`insert into bank values("${args.bank.BANK_ID}", "${args.bank.BANK_NAME}")`).then((result, err) => {
+      if (result) {
+        res = 'Data inserted successfully';
+      } else {
+        res = 'Failed to insert data';
+      }
+    });
+    return res;
+  },
+};
+
+module.exports = { bankQueries, bankMutations };
