@@ -13,10 +13,13 @@ const typeDefs = gql`
   type Query {
     getAllBanks: [Bank]
     getBankDetails(bankId: ID!): Bank
+    getAllBranches: [Branch]
+    getBranchDetails(branchId: ID!): Branch
   }
 
   type Mutation {
     createBank(bank: BankInput): String
+    createBranch(branch: BranchInput): String
   }
 `;
 

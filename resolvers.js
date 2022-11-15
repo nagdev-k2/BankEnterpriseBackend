@@ -1,11 +1,14 @@
 const { bankQueries, bankMutations } = require('./src/resolvers/bankResolvers');
+const { branchQueries, branchMutations } = require('./src/resolvers/branchResolvers');
 
 const resolvers = {
   Query: {
-    ...bankQueries
+    ...bankQueries,
+    ...branchQueries
   },
   Mutation: {
-    ...bankMutations
+    ...bankMutations,
+    ...branchMutations
   }
 };
 
