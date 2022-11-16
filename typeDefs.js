@@ -4,6 +4,8 @@ const { bankType } = require('./src/types/bankType');
 const { branchType } = require('./src/types/branchType');
 const { employeeType } = require('./src/types/employeeType');
 const {customerType}=require("./src/types/customerType")
+const {accountsType}=require("./src/types/accountsType")
+const {dependentsType}=require("./src/types/dependentsType")
 
 const typeDefs = gql`
   scalar DateTime
@@ -12,6 +14,8 @@ const typeDefs = gql`
   ${assetType}
   ${employeeType}
   ${customerType}
+  ${accountsType}
+  ${dependentsType}
 
   type Query {
     getAllBanks: [Bank]
@@ -22,6 +26,11 @@ const typeDefs = gql`
     getAssetDetails(AssetId: ID!): Asset
     getAllCustomers:[Customer]
     getCustomerDetails(ssn:ID!):Customer
+    getAllAccounts: [Accounts]
+    getAccountDetails(account_no: ID!):Accounts
+    getAllDependents:[Dependents]
+    getDependentDetails(dep_id:ID!):Dependents
+
   }
 
   type Mutation {
@@ -29,6 +38,8 @@ const typeDefs = gql`
     createBranch(branch: BranchInput): String
     createAsset(asset: AssetInput): String
     createCustomer(customer: CustomerInput):String
+    createAccounts(accounts:AccountsInput):String
+    createDependents(dependents:DependentsInput):String
   }
 `;
 
