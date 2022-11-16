@@ -23,7 +23,7 @@ const resolvers = {
     ...loanBorrowedQueries,
     ...loanPaymentsQueries,
     ...recordsQueries,
-    ...customerAccountsQueries
+    ...customerAccountsQueries,
     ...employeeQueries,
   },
   Mutation: {
