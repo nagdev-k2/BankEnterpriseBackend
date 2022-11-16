@@ -52,8 +52,8 @@ const typeDefs = gql`
     getRecordsDetails(account_no:ID!):Records
     getAllCustomerAccounts:[CustomerAccounts]
     getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
-
-
+    getAllEmployees: [Employee]
+    getEmployeeDetails: Employee
   }
 
   type Mutation {
@@ -68,6 +68,7 @@ const typeDefs = gql`
     createLoanPayments(loan_payments:LoanPaymentsInput):String
     createRecords(records:RecordsInput):String
     createCustomerAccounts(customer_accounts:CustomerAccountsInput):String
+    createEmployee(employee: EmployeeInput): String
   }
 `;
 

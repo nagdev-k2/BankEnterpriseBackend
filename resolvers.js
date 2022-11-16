@@ -9,6 +9,8 @@ const {loanBorrowedQueries, loanBorrowedMutations}=require("./src/resolvers/loan
 const { loanPaymentsQueries, loanPaymentsMutations }=require("./src/resolvers/loanPaymentsResolver")
 const { recordsQueries, recordsMutations }=require("./src/resolvers/recordsResolver")
 const { customerAccountsQueries, customerAccountsMutations }=require("./src/resolvers/customerAccountsResolver")
+const { employeeQueries, employeeMutations } = require('./src/resolvers/employeeResolvers');
+
 const resolvers = {
   Query: {
     ...bankQueries,
@@ -22,6 +24,7 @@ const resolvers = {
     ...loanPaymentsQueries,
     ...recordsQueries,
     ...customerAccountsQueries
+    ...employeeQueries,
   },
   Mutation: {
     ...bankMutations,
@@ -34,7 +37,8 @@ const resolvers = {
     ...loanBorrowedMutations,
     ...loanPaymentsMutations,
     ...recordsMutations,
-    ...customerAccountsMutations
+    ...customerAccountsMutations,
+    ...employeeMutations,
   }
 };
 
