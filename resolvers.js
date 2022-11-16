@@ -4,6 +4,7 @@ const { assetQueries, assetMutations } = require('./src/resolvers/assetResolvers
 const {customerQueries, customerMutations}=require('./src/resolvers/customerResolvers')
 const {accountsQueries, accountsMutations}=require("./src/resolvers/accountsResolvers") 
 const { dependentsQueries, dependentsMutations }=require("./src/resolvers/dependentsResolvers")
+const { loanQueries, loanMutations }=require("./src/resolvers/loanResolvers")
 const resolvers = {
   Query: {
     ...bankQueries,
@@ -11,7 +12,8 @@ const resolvers = {
     ...assetQueries,
     ...customerQueries,
     ...accountsQueries,
-    ...dependentsQueries
+    ...dependentsQueries,
+    ...loanQueries
   },
   Mutation: {
     ...bankMutations,
@@ -19,7 +21,8 @@ const resolvers = {
     ...assetMutations,
     ...customerMutations,
     ...accountsMutations,
-    ...dependentsMutations
+    ...dependentsMutations,
+    ...loanMutations
   }
 };
 

@@ -6,6 +6,7 @@ const { employeeType } = require('./src/types/employeeType');
 const {customerType}=require("./src/types/customerType")
 const {accountsType}=require("./src/types/accountsType")
 const {dependentsType}=require("./src/types/dependentsType")
+const {loanType}=require("./src/types/loanType")
 
 const typeDefs = gql`
   scalar DateTime
@@ -16,6 +17,7 @@ const typeDefs = gql`
   ${customerType}
   ${accountsType}
   ${dependentsType}
+  ${loanType}
 
   type Query {
     getAllBanks: [Bank]
@@ -30,6 +32,8 @@ const typeDefs = gql`
     getAccountDetails(account_no: ID!):Accounts
     getAllDependents:[Dependents]
     getDependentDetails(dep_id:ID!):Dependents
+    getAllLoans:[Loan]
+    getLoanDetails(loan_no:ID!):Loan
 
   }
 
@@ -40,6 +44,7 @@ const typeDefs = gql`
     createCustomer(customer: CustomerInput):String
     createAccounts(accounts:AccountsInput):String
     createDependents(dependents:DependentsInput):String
+    createLoan(loan:LoanInput):String
   }
 `;
 
