@@ -10,6 +10,8 @@ const {loanType}=require("./src/types/loanType")
 const {loanBorrowedType}=require("./src/types/loanBorrowedType")
 const {loanPaymentsType}=require("./src/types/loanPaymentsType")
 const {recordsType}=require("./src/types/recordsType")
+const { customerAccountsType }=require("./src/types/customerAccountsType")
+
 
 
 const typeDefs = gql`
@@ -25,6 +27,7 @@ const typeDefs = gql`
   ${loanBorrowedType}
   ${loanPaymentsType}
   ${recordsType}
+  ${customerAccountsType}
 
   type Query {
     getAllBanks: [Bank]
@@ -47,6 +50,9 @@ const typeDefs = gql`
     getLoanPaymentsDetails(loan_no:ID!):LoanPayments
     getAllRecords:[Records]
     getRecordsDetails(account_no:ID!):Records
+    getAllCustomerAccounts:[CustomerAccounts]
+    getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
+
 
   }
 
@@ -61,6 +67,7 @@ const typeDefs = gql`
     createLoanBorrowed(loan_borrowed:LoanBorrowedInput):String
     createLoanPayments(loan_payments:LoanPaymentsInput):String
     createRecords(records:RecordsInput):String
+    createCustomerAccounts(customer_accounts:CustomerAccountsInput):String
   }
 `;
 

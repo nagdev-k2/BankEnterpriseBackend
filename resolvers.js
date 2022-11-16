@@ -8,6 +8,7 @@ const { loanQueries, loanMutations }=require("./src/resolvers/loanResolvers")
 const {loanBorrowedQueries, loanBorrowedMutations}=require("./src/resolvers/loanBorrowedResolver")
 const { loanPaymentsQueries, loanPaymentsMutations }=require("./src/resolvers/loanPaymentsResolver")
 const { recordsQueries, recordsMutations }=require("./src/resolvers/recordsResolver")
+const { customerAccountsQueries, customerAccountsMutations }=require("./src/resolvers/customerAccountsResolver")
 const resolvers = {
   Query: {
     ...bankQueries,
@@ -19,7 +20,8 @@ const resolvers = {
     ...loanQueries,
     ...loanBorrowedQueries,
     ...loanPaymentsQueries,
-    ...recordsQueries
+    ...recordsQueries,
+    ...customerAccountsQueries
   },
   Mutation: {
     ...bankMutations,
@@ -31,7 +33,8 @@ const resolvers = {
     ...loanMutations,
     ...loanBorrowedMutations,
     ...loanPaymentsMutations,
-    ...recordsMutations
+    ...recordsMutations,
+    ...customerAccountsMutations
   }
 };
 
