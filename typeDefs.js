@@ -5,6 +5,7 @@ const { branchType } = require('./src/types/branchType');
 const { employeeType } = require('./src/types/employeeType');
 
 const typeDefs = gql`
+  scalar DateTime
   ${bankType}
   ${branchType}
   ${assetType}
@@ -15,11 +16,14 @@ const typeDefs = gql`
     getBankDetails(bankId: ID!): Bank
     getAllBranches: [Branch]
     getBranchDetails(branchId: ID!): Branch
+    getAllAssets: [Asset]
+    getAssetDetails: Asset
   }
 
   type Mutation {
     createBank(bank: BankInput): String
     createBranch(branch: BranchInput): String
+    createAsset(asset: AssetInput): String
   }
 `;
 
