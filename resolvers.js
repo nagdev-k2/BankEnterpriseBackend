@@ -7,6 +7,7 @@ const { dependentsQueries, dependentsMutations }=require("./src/resolvers/depend
 const { loanQueries, loanMutations }=require("./src/resolvers/loanResolvers")
 const {loanBorrowedQueries, loanBorrowedMutations}=require("./src/resolvers/loanBorrowedResolver")
 const { loanPaymentsQueries, loanPaymentsMutations }=require("./src/resolvers/loanPaymentsResolver")
+const { recordsQueries, recordsMutations }=require("./src/resolvers/recordsResolver")
 const resolvers = {
   Query: {
     ...bankQueries,
@@ -17,7 +18,8 @@ const resolvers = {
     ...dependentsQueries,
     ...loanQueries,
     ...loanBorrowedQueries,
-    ...loanPaymentsQueries
+    ...loanPaymentsQueries,
+    ...recordsQueries
   },
   Mutation: {
     ...bankMutations,
@@ -28,7 +30,8 @@ const resolvers = {
     ...dependentsMutations,
     ...loanMutations,
     ...loanBorrowedMutations,
-    ...loanPaymentsMutations
+    ...loanPaymentsMutations,
+    ...recordsMutations
   }
 };
 
