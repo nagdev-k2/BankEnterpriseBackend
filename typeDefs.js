@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 const { assetType } = require('./src/types/assetType');
 const { bankType } = require('./src/types/bankType');
 const { branchType } = require('./src/types/branchType');
-const { employeeType } = require('./src/types/employeeType');
+const{employeeType}=require("./src/types/employeeType")
 const {customerType}=require("./src/types/customerType")
 const {accountsType}=require("./src/types/accountsType")
 const {dependentsType}=require("./src/types/dependentsType")
@@ -53,7 +53,7 @@ const typeDefs = gql`
     getAllCustomerAccounts:[CustomerAccounts]
     getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
     getAllEmployees: [Employee]
-    getEmployeeDetails: Employee
+    getEmployeeDetails(SSN:ID!): Employee
   }
 
   type Mutation {
