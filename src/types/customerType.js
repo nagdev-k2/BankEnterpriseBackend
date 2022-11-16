@@ -4,7 +4,7 @@ const customerType = `
     NAME: String
     STREET: String
     CITY: String
-    ASSOCIATED_EMPLOYEE_SSN: Number
+    ASSOCIATED_EMPLOYEE_SSN: Int
     ASSOCIATED_EMPLOYEE_TYPE: String
   }
 
@@ -13,7 +13,7 @@ const customerType = `
     NAME: String!
     STREET: String!
     CITY: String!
-    ASSOCIATED_EMPLOYEE_SSN: Number!
+    ASSOCIATED_EMPLOYEE_SSN: Int!
     ASSOCIATED_EMPLOYEE_TYPE: String!
   }
 
