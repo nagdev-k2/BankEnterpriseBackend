@@ -48,9 +48,9 @@ const bankMutations = {
     let res = 'No Data';    
     await connection.promise().query(`Update bank set BANK_NAME=${args.bank.BANK_NAME} where BANK_ID=${args.bank.BANK_ID}`).then((result, err) => {
       if (result) {
-        res = 'Data Delete successfully';
+        res = 'Data Updated successfully';
       } else {
-        res = 'Failed to Delete data';
+        res = 'Failed to Updated data';
       }
     });
     return res;

@@ -80,6 +80,7 @@ const typeDefs = gql`
     updateAccounts(accounts:AccountsInput):String
     updateAsset(assets:AssetInput):String
     updateBank(bank:BankInput):String
+    updateBranch(branch:BranchInput):String
   }
 `;
 

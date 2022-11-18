@@ -57,9 +57,9 @@ const assetMutations = {
     let res = 'No Data';    
     await connection.promise().query(`update Assets set NAME=${args.assets.NAME},TYPE=${args.assets.TYPE},STATUS=${args.assets.STATUS},COST=${args.assets.COST},DATE_OF_PURCHASE=${args.assets.DATE_OF_PURCHASE} where ASSET_ID=${args.assets.ASSET_ID}`).then((result, err) => {
       if (result) {
-        res = 'Data Delete successfully';
+        res = 'Data Updated successfully';
       } else {
-        res = 'Failed to Delete data';
+        res = 'Failed to Update data';
       }
     });
     return res;

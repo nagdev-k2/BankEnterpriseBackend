@@ -58,9 +58,9 @@ const accountsMutations = {
     console.log(args.accounts);
     await connection.promise().query(`update Accounts set BALANCE=${args.accounts.BALANCE},RECENT_ACCESS_DATE= ${args.accounts.RECENT_ACCESS_DATE},TYPE=${args.accounts.TYPE},INTEREST_RATE=${args.accounts.INTEREST_RATE},OVERDRAFTS=${args.accounts.OVERDRAFTS}  where ACCOUNT_ID=${args.accounts.ACCOUNT_NO}`).then((result, err) => {
       if (result) {
-        res = 'Data Deleted successfully';
+        res = 'Data Updated successfully';
       } else {
-        res = 'Failed to Delete data';
+        res = 'Failed to Update data';
       }
     });
     return res;
