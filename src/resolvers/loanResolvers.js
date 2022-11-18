@@ -44,7 +44,7 @@ const loanMutations = {
 
   async deleteLoan(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`delete from loan where LOAN_ID=${args.loan_id}`).then((result, err) => {
+    await connection.promise().query(`delete from loan where LOAN_NO=${args.loan_no}`).then((result, err) => {
       if (result) {
         res = 'Data Deleted successfully';
       } else {
@@ -53,6 +53,18 @@ const loanMutations = {
     });
     return res;
   },
+  async updateLoan(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`update loan set AMOUNT=${args.loan.AMOUNT},LOAN_TYPE=${args.loan.LOAN_TYPE},CREDIT_LIMIT=${args.loan.CREDIT_LIMIT},CREDIT_RATING=${args.loan.CREDIT_RATING},INTEREST_RATE=${args.loan.INTEREST_RATE} where LOAN_NO=${args.loan.LOAN_NO}`).then((result, err) => {
+      if (result) {
+        res = 'Data Updated successfully';
+      } else {
+        res = 'Failed to Update data';
+      }
+    });
+    return res;
+  },
+  
 };
 
 module.exports = { loanQueries, loanMutations };

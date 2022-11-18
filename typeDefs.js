@@ -83,6 +83,7 @@ const typeDefs = gql`
     updateBranch(branch:BranchInput):String
     updateCustomer(customer:CustomerInput):String
     updateEmployee(employee:EmployeeInput):String
+    updateLoan(loan:LoanInput):String
   }
 `;
 
