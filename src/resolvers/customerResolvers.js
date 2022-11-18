@@ -39,6 +39,17 @@ const customerMutations = {
     });
     return res;
   },
+  async deleteCustomer(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`delete from customer where SSN=${args.customer_ssn}`).then((result, err) => {
+      if (result) {
+        res = 'Data Delete successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { customerQueries, customerMutations };

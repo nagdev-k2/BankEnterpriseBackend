@@ -4,6 +4,23 @@ const defaultLoanBorrowed = {
   LOAN_NO: 0,
   CUSTOMER_SSN: 0,
 }
+const defaultLoan={
+  LOAN_NO: 0,
+  LOAN_OFFICER_SSN: 0,
+  BRANCH_ID:'NA',
+  AMOUNT: 0.0,
+  LOAN_TYPE:'NA',
+  CREDIT_LIMIT:0,
+  CREDIT_RATING:0.0,
+  INTEREST_RATE:0.0
+}
+
+const defaultLoanBorrowedbycust={
+  ...defaultLoanBorrowed,
+  ...defaultLoan
+
+}
+
 
 
 const loanBorrowedQueries = {
@@ -20,6 +37,16 @@ const loanBorrowedQueries = {
       res = rows[0]
     });
     return res;
+  },
+  async getLoanBorrowedDetailsByCustomer(_,args){
+    let res=[defaultLoanBorrowedbycust]
+    await connection.promise().query(`select loan_no from loan_borrowed where CUSTOMER_SSN = '${args.customer_ssn}'`).then(([rows, fields]) => {
+      res = rows
+    });
+    console.log(res)
+    return res
+
+
   },
 };
 

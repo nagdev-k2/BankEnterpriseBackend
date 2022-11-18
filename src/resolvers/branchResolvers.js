@@ -37,6 +37,17 @@ const branchMutations = {
     });
     return res;
   },
+  async deleteBranch(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`delete from branch where BRANCH_ID=${args.branch_id}`).then((result, err) => {
+      if (result) {
+        res = 'Data Delete successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { branchQueries, branchMutations };

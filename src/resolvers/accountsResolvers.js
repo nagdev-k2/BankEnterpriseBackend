@@ -41,6 +41,18 @@ const accountsMutations = {
     });
     return res;
   },
+  async deleteAccounts(_, args) {
+    let res = 'No Data';    
+    console.log(args.accounts);
+    await connection.promise().query(`delete from Accounts where ACCOUNT_ID=${args.account_no}`).then((result, err) => {
+      if (result) {
+        res = 'Data Deleted successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { accountsQueries, accountsMutations };

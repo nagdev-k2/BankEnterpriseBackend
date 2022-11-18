@@ -54,6 +54,7 @@ const typeDefs = gql`
     getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
     getAllEmployees: [Employee]
     getEmployeeDetails(SSN:ID!): Employee
+    getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
   }
 
   type Mutation {
@@ -63,12 +64,20 @@ const typeDefs = gql`
     createCustomer(customer: CustomerInput):String
     createAccounts(accounts:AccountsInput):String
     createDependents(dependents:DependentsInput):String
-    createLoan(loan:LoanInput):String
+    createLoan(loans:LoanInput):String
     createLoanBorrowed(loan_borrowed:LoanBorrowedInput):String
     createLoanPayments(loan_payments:LoanPaymentsInput):String
     createRecords(records:RecordsInput):String
     createCustomerAccounts(customer_accounts:CustomerAccountsInput):String
     createEmployee(employee: EmployeeInput): String
+    deleteAccounts(account_no:ID!):String
+    deleteAsset(asset_id:ID!):String
+    deleteBank(bank_id:ID!):String
+    deleteBranch(branch_id:ID!):String
+    deleteCustomer(customer_ssn:ID!):String
+    deleteEmployee(employee_ssn:ID!):String
+    deleteLoan(loan_no:ID!):String
+
   }
 `;
 

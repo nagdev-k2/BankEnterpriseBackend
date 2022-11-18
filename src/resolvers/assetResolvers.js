@@ -42,6 +42,17 @@ const assetMutations = {
     });
     return res;
   },
+  async deleteAsset(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`delete from Assets where ASSET_ID=${args.asset_id}`).then((result, err) => {
+      if (result) {
+        res = 'Data Delete successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { assetQueries, assetMutations };
