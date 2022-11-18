@@ -4,6 +4,7 @@ const { ApolloServer } = require('apollo-server-express')
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers')
 const { connection } = require('./src/config/dbConnector');
+var cors = require('cors')
 
 async function startServer () {
   const app = express()
@@ -18,8 +19,10 @@ async function startServer () {
     typeDefs,
     resolvers
   })
+
+  app.use(cors());
   await apolloServer.start()
-  apolloServer.applyMiddleware({app: app, path: '/graphqli'})
+  apolloServer.applyMiddleware({app, path: '/graphqli'})
   app.use((req, res) => {
     res.send('Hello from express')
   })
