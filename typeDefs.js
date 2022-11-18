@@ -79,6 +79,7 @@ const typeDefs = gql`
     deleteLoan(loan_no:ID!):String
     updateAccounts(accounts:AccountsInput):String
     updateAsset(assets:AssetInput):String
+    updateBank(bank:BankInput):String
   }
 `;
 

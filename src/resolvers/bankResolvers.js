@@ -44,7 +44,18 @@ const bankMutations = {
       }
     });
     return res;
+  },async updateBank(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`Update bank set BANK_NAME=${args.bank.BANK_NAME} where BANK_ID=${args.bank.BANK_ID}`).then((result, err) => {
+      if (result) {
+        res = 'Data Delete successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
   },
+
 };
 
 module.exports = { bankQueries, bankMutations };
