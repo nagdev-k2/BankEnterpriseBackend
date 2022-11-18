@@ -84,6 +84,8 @@ const typeDefs = gql`
     updateCustomer(customer:CustomerInput):String
     updateEmployee(employee:EmployeeInput):String
     updateLoan(loan:LoanInput):String
+    deleteRecords(account_no:ID!):String
+    updateRecords(records:RecordsInput):String
   }
 `;
 
