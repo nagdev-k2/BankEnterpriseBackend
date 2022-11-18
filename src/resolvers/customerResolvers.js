@@ -50,6 +50,17 @@ const customerMutations = {
     });
     return res;
   },
+  async updateCustomer(_, args) {
+    let res = 'No Data';
+    await connection.promise().query(`update into customer set NAME=${args.customer.NAME},STREET=${args.customer.STREET},CITY=${args.customer.CITY},ASSOCIATED_EMPLOYEE_TYPE=${args.customer.ASSOCIATED_EMPLOYEE_TYPE} where SSN=${args.customer.SSN}`).then((result, err) => {
+      if (result) {
+        res = 'Data Updated successfully';
+      } else {
+        res = 'Failed to Update data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { customerQueries, customerMutations };
