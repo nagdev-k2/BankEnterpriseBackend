@@ -53,6 +53,17 @@ const assetMutations = {
     });
     return res;
   },
+  async updateAsset(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`update Assets set NAME=${args.assets.NAME},TYPE=${args.assets.TYPE},STATUS=${args.assets.STATUS},COST=${args.assets.COST},DATE_OF_PURCHASE=${args.assets.DATE_OF_PURCHASE} where ASSET_ID=${args.asset_id}`).then((result, err) => {
+      if (result) {
+        res = 'Data Delete successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { assetQueries, assetMutations };

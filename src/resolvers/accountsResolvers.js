@@ -53,6 +53,18 @@ const accountsMutations = {
     });
     return res;
   },
+  async updateAccounts(_, args) {
+    let res = 'No Data';    
+    console.log(args.accounts);
+    await connection.promise().query(`update Accounts set BALANCE=${args.accounts.BALANCE},RECENT_ACCESS_DATE= ${args.accounts.RECENT_ACCESS_DATE},TYPE=${args.accounts.TYPE},INTEREST_RATE=${args.accounts.INTEREST_RATE},OVERDRAFTS=${args.accounts.OVERDRAFTS}  where ACCOUNT_ID=${args.account_no}`).then((result, err) => {
+      if (result) {
+        res = 'Data Deleted successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
 };
 
 module.exports = { accountsQueries, accountsMutations };
