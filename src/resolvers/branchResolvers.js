@@ -7,9 +7,9 @@ const defaultBranch = {
   CITY: 'NA',
 }
 
-
 const branchQueries = {
   async getAllBranches() {
+    createBranchId()
     let res = [defaultBranch]
     await connection.promise().query('select * from branch').then(([rows, fields]) => {
       res = rows
@@ -25,10 +25,21 @@ const branchQueries = {
   },
 };
 
+const createBranchId = async (city) => {
+  let res = [defaultBranch];
+    await connection.promise().query('SELECT BRANCH_ID FROM Branch ORDER BY BRANCH_ID DESC LIMIT 1').then(([rows, fields]) => {
+      res = rows[0]
+    });
+    res = res['BRANCH_ID'].split('_')
+    res = `${res[0]}_${city.substring(0,4)}_0${(parseInt(res[2])+1)}`
+    console.log(res);
+    return res;
+}
+
 const branchMutations = {
   async createBranch(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into branch values("${args.branch.BRANCH_ID}", "${args.branch.BANK_ID}", "${args.branch.BRANCH_NAME}", "${args.branch.CITY}")`).then((result, err) => {
+    await connection.promise().query(`insert into branch values("${createBranchId(args.branch.CITY)}", "${args.branch.BANK_ID}", "${args.branch.BRANCH_NAME}", "${args.branch.CITY}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
