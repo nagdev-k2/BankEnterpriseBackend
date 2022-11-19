@@ -8,7 +8,6 @@ const employeeType = `
     MANAGER_SSN: Int
     START_DATE: String
   }
-
   input EmployeeInput {
     SSN: ID!
     BRANCH_ID: String!
