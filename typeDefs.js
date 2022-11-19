@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 const { assetType } = require('./src/types/assetType');
 const { bankType } = require('./src/types/bankType');
 const { branchType } = require('./src/types/branchType');
-const { employeeType } = require('./src/types/employeeType');
+const{employeeType}=require("./src/types/employeeType")
 const {customerType}=require("./src/types/customerType")
 const {accountsType}=require("./src/types/accountsType")
 const {dependentsType}=require("./src/types/dependentsType")
@@ -53,7 +53,8 @@ const typeDefs = gql`
     getAllCustomerAccounts:[CustomerAccounts]
     getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
     getAllEmployees: [Employee]
-    getEmployeeDetails: Employee
+    getEmployeeDetails(SSN:ID!): Employee
+    getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
   }
 
   type Mutation {
@@ -63,12 +64,28 @@ const typeDefs = gql`
     createCustomer(customer: CustomerInput):String
     createAccounts(accounts:AccountsInput):String
     createDependents(dependents:DependentsInput):String
-    createLoan(loan:LoanInput):String
+    createLoan(loans:LoanInput):String
     createLoanBorrowed(loan_borrowed:LoanBorrowedInput):String
     createLoanPayments(loan_payments:LoanPaymentsInput):String
     createRecords(records:RecordsInput):String
     createCustomerAccounts(customer_accounts:CustomerAccountsInput):String
     createEmployee(employee: EmployeeInput): String
+    deleteAccounts(account_no:ID!):String
+    deleteAsset(asset_id:ID!):String
+    deleteBank(bank_id:ID!):String
+    deleteBranch(branch_id:ID!):String
+    deleteCustomer(customer_ssn:ID!):String
+    deleteEmployee(employee_ssn:ID!):String
+    deleteLoan(loan_no:ID!):String
+    updateAccounts(accounts:AccountsInput):String
+    updateAsset(assets:AssetInput):String
+    updateBank(bank:BankInput):String
+    updateBranch(branch:BranchInput):String
+    updateCustomer(customer:CustomerInput):String
+    updateEmployee(employee:EmployeeInput):String
+    updateLoan(loan:LoanInput):String
+    deleteRecords(account_no:ID!):String
+    updateRecords(records:RecordsInput):String
   }
 `;
 

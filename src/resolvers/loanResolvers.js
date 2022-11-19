@@ -32,7 +32,7 @@ const loanQueries = {
 const loanMutations = {
   async createLoan(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into loan values("${args.loan.LOAN_NO}","${args.loan.LOAN_OFFICER_SSN}" ,"${args.loan.BRANCH_ID}","${args.loan.AMOUNT}","${args.loan.LOAN_TYPE},"${args.loan.CREDIT_LIMIT}","${args.loan.CREDIT_RATING}","${args.loan.INTEREST_RATE}")`).then((result, err) => {
+    await connection.promise().query(`insert into loan values( "${args.loans.LOAN_NO}","${args.loans.LOAN_OFFICER_SSN}" ,"${args.loans.BRANCH_ID}","${args.loans.AMOUNT}","${args.loans.LOAN_TYPE},"${args.loans.CREDIT_LIMIT}","${args.loans.CREDIT_RATING}","${args.loans.INTEREST_RATE}" ) ` ).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
@@ -41,6 +41,30 @@ const loanMutations = {
     });
     return res;
   },
+
+  async deleteLoan(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`delete from loan where LOAN_NO=${args.loan_no}`).then((result, err) => {
+      if (result) {
+        res = 'Data Deleted successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
+  async updateLoan(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`update loan set AMOUNT=${args.loan.AMOUNT},LOAN_TYPE=${args.loan.LOAN_TYPE},CREDIT_LIMIT=${args.loan.CREDIT_LIMIT},CREDIT_RATING=${args.loan.CREDIT_RATING},INTEREST_RATE=${args.loan.INTEREST_RATE} where LOAN_NO=${args.loan.LOAN_NO}`).then((result, err) => {
+      if (result) {
+        res = 'Data Updated successfully';
+      } else {
+        res = 'Failed to Update data';
+      }
+    });
+    return res;
+  },
+  
 };
 
 module.exports = { loanQueries, loanMutations };

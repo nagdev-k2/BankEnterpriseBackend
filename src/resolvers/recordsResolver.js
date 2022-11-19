@@ -37,6 +37,29 @@ const recordsMutations = {
     });
     return res;
   },
+  async deleteRecords(_, args) {
+    let res = 'No Data';
+    await connection.promise().query(`delete from records where ACCOUNT_NO=${args.account_no} `).then((result, err) => {
+      if (result) {
+        res = 'Data Deleted successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
+  async updateRecords(_, args) {
+    let res = 'No Data';
+    await connection.promise().query(`update records set DATE=${args.records.DATE},TYPE=${args.records.TYPE},AMOUNT=${args.records.AMOUNT} where ACCOUNT_NO=${args.records.ACCOUNT_NO} `).then((result, err) => {
+      if (result) {
+        res = 'Data inserted successfully';
+      } else {
+        res = 'Failed to insert data';
+      }
+    });
+    return res;
+  },
+  
 };
 
 module.exports = { recordsQueries, recordsMutations };
