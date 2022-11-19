@@ -56,7 +56,6 @@ const loanBorrowedMutations = {
     await connection.promise().query('SELECT * FROM LOAN_BORROWED,LOAN where LOAN.LOAN_NO=LOAN_BORROWED.LOAN_NO').then(([rows, fields]) => {
       check = rows
     });
-    console.log(check);
     if(check.length>1)
     {
       res="Customer has already has Two Loans"
