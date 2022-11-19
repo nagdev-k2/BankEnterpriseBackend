@@ -35,9 +35,10 @@ const loanMutations = {
     await connection.promise().query('SELECT LOAN_NO FROM LOAN ORDER BY LOAN_NO DESC LIMIT 1').then(([rows, fields]) => {
       val = rows[0]
     });
+    console.log(val);
     if(val)
     {
-      loan_no+=1
+      loan_no=val["LOAN_NO"]+1
     }
     else
     {
@@ -53,6 +54,7 @@ const loanMutations = {
       }
     });
     return res;
+  
   },
 
   async deleteLoan(_, args) {

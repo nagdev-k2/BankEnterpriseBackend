@@ -53,6 +53,16 @@ const loanBorrowedQueries = {
 const loanBorrowedMutations = {
   async createLoanBorrowed(_, args) {
     let res = 'No Data';
+    await connection.promise().query('SELECT * FROM LOAN_BORROWED,LOAN where LOAN.LOAN_NO=LOAN_BORROWED.LOAN_NO').then(([rows, fields]) => {
+      check = rows
+    });
+    console.log(check);
+    if(check.length>1)
+    {
+      res="Customer has already has Two Loans"
+    }
+    else
+    {
     await connection.promise().query(`insert into loan_borrowed values("${args.loan_borrowed.LOAN_NO}","${args.loan_borrowed.CUSTOMER_SSN}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
@@ -60,6 +70,7 @@ const loanBorrowedMutations = {
         res = 'Failed to insert data';
       }
     });
+  }
     return res;
   },
 };
