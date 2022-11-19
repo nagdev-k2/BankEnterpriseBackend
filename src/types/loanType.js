@@ -11,7 +11,6 @@ const loanType = `
   }
 
   input LoanInput {
-    LOAN_NO: ID!
     LOAN_OFFICER_SSN: Int!
     BRANCH_ID: String!
     AMOUNT: Float!
