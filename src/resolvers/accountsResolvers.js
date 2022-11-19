@@ -29,16 +29,26 @@ const accountsQueries = {
   },
 };
 
-const createAccountId = async () => {
-  let time = new Date()
-  return time.getTime();
-}
+// const createAccountId = async () => {
+//   let time = new Date()
+//   return time.getTime();
+// }
 
 const accountsMutations = {
   async createAccounts(_, args) {
     let res = 'No Data';    
-    console.log(args.accounts);
-    await connection.promise().query(`insert into Accounts values("${createAccountId()}", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${args.accounts.RECENT_ACCESS_DATE}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then((result, err) => {
+    await connection.promise().query('SELECT ACCOUNT_NO FROM ACCOUNTS ORDER BY ACCOUNT_NO DESC LIMIT 1').then(([rows, fields]) => {
+      val = rows[0]
+    });
+    if(val)
+    {
+      acc_no+=1
+    }
+    else
+    {
+      acc_no=1000
+    }
+    await connection.promise().query(`insert into Accounts values("${acc_no}", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${args.accounts.RECENT_ACCESS_DATE}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
