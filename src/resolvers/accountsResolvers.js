@@ -42,7 +42,7 @@ const accountsMutations = {
     });
     if(val)
     {
-      acc_no+=1
+      acc_no=val["ACCOUNT_NO"]+1
     }
     else
     {
