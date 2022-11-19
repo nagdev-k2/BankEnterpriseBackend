@@ -44,7 +44,6 @@ const bankMutations = {
     await connection.promise().query(`SELECT BANK_NAME FROM Bank where BANK_NAME= "${args.bank.BANK_NAME}"`).then(([rows, fields]) => {
       data = rows[0]
     });
-    console.log(data);
     if(data)
     {
       res="Data Already Present"
