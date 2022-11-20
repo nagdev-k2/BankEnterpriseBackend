@@ -16,7 +16,7 @@ const customerAccountsQueries = {
   },
   async getCustomerAccountsDetails(_, args) {
     let res = defaultCustomerAccounts;
-    await connection.promise().query(`select * from customer_accounts where ACCOUNT_NO = '${args.account_no}' and CUSTOMER_SSN='${args.customer_ssn}'`).then(([rows, fields]) => {
+    await connection.promise().query(`select * from customer_accounts where UIN = '${args.uin}'`).then(([rows, fields]) => {
       res = rows[0]
     });
     return res;
@@ -26,7 +26,19 @@ const customerAccountsQueries = {
 const customerAccountsMutations = {
   async createCustomerAccounts(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into records values("${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}")`).then((result, err) => {
+    await connection.promise().query('SELECT UIN FROM customer_accounts ORDER BY UIN DESC LIMIT 1').then(([rows, fields]) => {
+      val = rows[0]
+    });
+
+    if(val)
+    {
+      uin= val["UIN"]+1
+    }
+    else
+    {
+      uin=00000001
+    }
+    await connection.promise().query(`insert into records values("${uin}","${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

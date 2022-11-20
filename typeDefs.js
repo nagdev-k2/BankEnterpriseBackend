@@ -51,7 +51,7 @@ const typeDefs = gql`
     getAllRecords:[Records]
     getRecordsDetails(account_no:ID!):Records
     getAllCustomerAccounts:[CustomerAccounts]
-    getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
+    getCustomerAccountsDetails(uin:ID!):CustomerAccounts
     getAllEmployees: [Employee]
     getEmployeeDetails(SSN:ID!): Employee
     getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
