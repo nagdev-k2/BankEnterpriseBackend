@@ -36,9 +36,10 @@ const customerAccountsMutations = {
     }
     else
     {
-      uin=00000001
+      uin=333333333
     }
-    await connection.promise().query(`insert into records values("${uin}","${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}")`).then((result, err) => {
+    
+    await connection.promise().query(`insert into customer_accounts values("${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}","${uin}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
