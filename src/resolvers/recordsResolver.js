@@ -33,12 +33,11 @@ const recordsMutations = {
     });
     if(val)
     {
-      res = val['RECORD_NO'].split('_')
-      record_no = `${res[0]}_0${(parseInt(res[1])+1)}`
+      record_no = val['RECORD_NO']+1
     }
     else
     {
-      record_no="REC_01"
+      record_no=10000
     }
 
     await connection.promise().query(`insert into records values("${record_no}","${args.records.ACCOUNT_NO}","${args.records.DATE}" ,"${args.records.TYPE}","${args.records.AMOUNT}")`).then((result, err) => {
