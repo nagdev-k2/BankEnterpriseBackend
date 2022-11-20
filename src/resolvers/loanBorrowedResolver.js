@@ -43,10 +43,7 @@ const loanBorrowedQueries = {
     await connection.promise().query(`select loan_no from loan_borrowed where CUSTOMER_SSN = '${args.customer_ssn}'`).then(([rows, fields]) => {
       res = rows
     });
-    console.log(res)
     return res
-
-
   },
 };
 
