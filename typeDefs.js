@@ -47,11 +47,11 @@ const typeDefs = gql`
     getAllLoansBorrowed:[LoanBorrowed]
     getLoanBorrowedDetails(loan_no:ID!):LoanBorrowed
     getAllLoanPayments:[LoanPayments]
-    getLoanPaymentsDetails(loan_no:ID!):LoanPayments
+    getLoanPaymentsDetails(trans_id:ID!):LoanPayments
     getAllRecords:[Records]
     getRecordsDetails(account_no:ID!):Records
     getAllCustomerAccounts:[CustomerAccounts]
-    getCustomerAccountsDetails(account_no:ID!,customer_ssn:ID!):CustomerAccounts
+    getCustomerAccountsDetails(uin:ID!):CustomerAccounts
     getAllEmployees: [Employee]
     getEmployeeDetails(SSN:ID!): Employee
     getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
@@ -77,6 +77,7 @@ const typeDefs = gql`
     deleteCustomer(customer_ssn:ID!):String
     deleteEmployee(employee_ssn:ID!):String
     deleteLoan(loan_no:ID!):String
+    deleteDependents(dep_id:ID!):String
     updateAccounts(accounts:AccountsInput):String
     updateAsset(assets:AssetInput):String
     updateBank(bank:BankInput):String
@@ -84,8 +85,7 @@ const typeDefs = gql`
     updateCustomer(customer:CustomerInput):String
     updateEmployee(employee:EmployeeInput):String
     updateLoan(loan:LoanInput):String
-    deleteRecords(account_no:ID!):String
-    updateRecords(records:RecordsInput):String
+    updateDependents(dependents:DependentsInput):String
   }
 `;
 

@@ -31,7 +31,10 @@ const employeeMutations = {
   async createEmployee(_, args) {
     let res = 'No Data';
     const { SSN, BRANCH_ID, NAME, TELEPHONE, ROLE, MANAGER_SSN, START_DATE  } = args.employee;
-    await connection.promise().query(`insert into Employee values("${SSN}", "${BRANCH_ID}" , "${NAME}", "${TELEPHONE}", "${ROLE}", "${START_DATE}", "${MANAGER_SSN}")`).then((result, err) => {
+    let start_date=new Date(START_DATE)
+    let curr_date=new Date()
+    let experience=curr_date.getFullYear()-start_date.getFullYear()
+    await connection.promise().query(`insert into Employee values("${SSN}", "${BRANCH_ID}" , "${NAME}", "${TELEPHONE}", "${ROLE}", "${START_DATE}", "${MANAGER_SSN}","${experience}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

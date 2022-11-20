@@ -28,7 +28,19 @@ const dependentsQueries = {
 const dependentsMutations = {
   async createDependents(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into dependents("employee_ssn","dependent_ssn","name") values("${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
+    await connection.promise().query('SELECT DEP_ID FROM DEPENDENTS ORDER BY DEP_ID DESC LIMIT 1').then(([rows, fields]) => {
+      val = rows[0]
+    });
+
+    if(val)
+    {
+      dep_id=val["DEP_ID"]+1
+    }
+    else
+    {
+      dep_id=300600
+    }
+    await connection.promise().query(`insert into dependents values("${dep_id}","${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
@@ -37,6 +49,30 @@ const dependentsMutations = {
     });
     return res;
   },
+
+  async deleteDependents(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`delete from dependents where DEP_ID=${args.dep_id}`).then((result, err) => {
+      if (result) {
+        res = 'Data Deleted successfully';
+      } else {
+        res = 'Failed to Delete data';
+      }
+    });
+    return res;
+  },
+  async updateDependents(_, args) {
+    let res = 'No Data';    
+    await connection.promise().query(`update loan set EMPLOYEE_SSN=${args.dependents.EMPLOYEE_SSN},DEPENDENT_SSN=${args.dependents.DEPENDENT_SSN},NAME=EMPLOYEE_SSN=${args.dependents.NAME}`).then((result, err) => {
+      if (result) {
+        res = 'Data Updated successfully';
+      } else {
+        res = 'Failed to Update data';
+      }
+    });
+    return res;
+  },
+
 };
 
 module.exports = { dependentsQueries, dependentsMutations };

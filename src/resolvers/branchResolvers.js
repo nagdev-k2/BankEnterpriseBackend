@@ -9,7 +9,6 @@ const defaultBranch = {
 
 const branchQueries = {
   async getAllBranches() {
-    createBranchId()
     let res = [defaultBranch]
     await connection.promise().query('select * from branch').then(([rows, fields]) => {
       res = rows
@@ -39,13 +38,38 @@ const createBranchId = async (city) => {
 const branchMutations = {
   async createBranch(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into branch values("${createBranchId(args.branch.CITY)}", "${args.branch.BANK_ID}", "${args.branch.BRANCH_NAME}", "${args.branch.CITY}")`).then((result, err) => {
-      if (result) {
-        res = 'Data inserted successfully';
-      } else {
-        res = 'Failed to insert data';
-      }
+    await connection.promise().query(`SELECT BRANCH_ID FROM Branch where City= "${args.branch.CITY}" and Bank_id="${args.branch.BANK_ID}"  ORDER BY BRANCH_ID DESC LIMIT 1`).then(([rows, fields]) => {
+      val = rows[0]
     });
+
+    if(val)
+    {
+      res="City Already Present"
+    }
+    else
+    {
+      await connection.promise().query(`SELECT BRANCH_ID,BANK_ID FROM Branch ORDER BY BRANCH_ID DESC LIMIT 1`).then(([rows, fields]) => {
+        val = rows[0]
+      });
+      if(val)
+      {
+        res = val['BRANCH_ID'].split('_')
+        branch_id = `BR_${val["BANK_ID"]}_${args.branch.CITY.substring(0,4)}_0${(parseInt(res[(res.length)-1])+1)}`
+      }
+      else
+      {
+        branch_id="BR_01"
+      }
+      
+      await connection.promise().query(`insert into branch values("${branch_id}", "${args.branch.BANK_ID}", "${args.branch.BRANCH_NAME}", "${args.branch.CITY}")`).then((result, err) => {
+        if (result) {
+          res = 'Data inserted successfully';
+        } else {
+          res = 'Failed to insert data';
+        }
+      });
+
+    }
     return res;
   },
   async deleteBranch(_, args) {
