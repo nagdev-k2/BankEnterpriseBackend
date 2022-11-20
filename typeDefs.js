@@ -77,6 +77,7 @@ const typeDefs = gql`
     deleteCustomer(customer_ssn:ID!):String
     deleteEmployee(employee_ssn:ID!):String
     deleteLoan(loan_no:ID!):String
+    deleteDependents(dep_id:ID!):String
     updateAccounts(accounts:AccountsInput):String
     updateAsset(assets:AssetInput):String
     updateBank(bank:BankInput):String
@@ -84,6 +85,7 @@ const typeDefs = gql`
     updateCustomer(customer:CustomerInput):String
     updateEmployee(employee:EmployeeInput):String
     updateLoan(loan:LoanInput):String
+    updateDependents(dependents:DependentsInput):String
   }
 `;
 
