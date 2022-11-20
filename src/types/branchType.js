@@ -8,7 +8,7 @@ const branchType = `
 
   input BranchInput {
     BANK_ID: String
-    BRANCH_ID: ID!
+    BRANCH_ID: Int
     BRANCH_NAME: String
     CITY: String
   }

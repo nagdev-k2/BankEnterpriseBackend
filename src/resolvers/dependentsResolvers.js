@@ -40,7 +40,7 @@ const dependentsMutations = {
     // {
     //   dep_id=300600
     // }
-    await connection.promise().query(`insert into dependents values("1","${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
+    await connection.promise().query(`insert into dependents (EMPLOYEE_SSN,DEPENDENT_SSN,NAME)values("${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

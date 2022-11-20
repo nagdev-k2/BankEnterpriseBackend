@@ -15,7 +15,7 @@ const defaultLoan = {
 const loanQueries = {
   async getAllLoans() {
     let res = [defaultLoan]
-    await connection.promise().query('select * from loan, LOAN BORROWED WHERE LOAN.LOAN_NO = LOAN_BORROWED.LOAN_NO').then(([rows, fields]) => {
+    await connection.promise().query('select * from loan,loan_borrowed where loan.LOAN_NO=loan_borrowed.LOAN_NO').then(([rows, fields]) => {
       res = rows
     });
     return res;
@@ -49,7 +49,7 @@ const loanMutations = {
 
   async deleteLoan(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`delete from loan where LOAN_NO=${args.loan_no}`).then((result, err) => {
+    await connection.promise().query(`delete from loan where LOAN_NO="${args.loan_no}"`).then((result, err) => {
       if (result) {
         res = 'Data Deleted successfully';
       } else {
@@ -60,7 +60,7 @@ const loanMutations = {
   },
   async updateLoan(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`update loan set AMOUNT=${args.loan.AMOUNT},LOAN_TYPE=${args.loan.LOAN_TYPE},CREDIT_LIMIT=${args.loan.CREDIT_LIMIT},CREDIT_RATING=${args.loan.CREDIT_RATING},INTEREST_RATE=${args.loan.INTEREST_RATE} where LOAN_NO=${args.loan.LOAN_NO}`).then((result, err) => {
+    await connection.promise().query(`update loan set AMOUNT="${args.loan.AMOUNT}",LOAN_TYPE="${args.loan.LOAN_TYPE}",CREDIT_LIMIT="${args.loan.CREDIT_LIMIT}",CREDIT_RATING="${args.loan.CREDIT_RATING}",INTEREST_RATE="${args.loan.INTEREST_RATE}" where LOAN_NO="${args.loan.LOAN_NO}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
