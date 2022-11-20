@@ -84,8 +84,6 @@ const typeDefs = gql`
     updateCustomer(customer:CustomerInput):String
     updateEmployee(employee:EmployeeInput):String
     updateLoan(loan:LoanInput):String
-    
-    
   }
 `;
 
