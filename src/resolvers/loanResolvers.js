@@ -32,21 +32,21 @@ const loanQueries = {
 const loanMutations = {
   async createLoan(_, args) {
     let res = 'No Data';
-    await connection.promise().query('SELECT LOAN_NO FROM LOAN ORDER BY LOAN_NO DESC LIMIT 1').then(([rows, fields]) => {
-      val = rows[0]
-    });
-    console.log(val);
-    if(val)
-    {
-      loan_no=val["LOAN_NO"]+1
-    }
-    else
-    {
-      loan_no=100200
-    }
+    // await connection.promise().query('SELECT LOAN_NO FROM LOAN ORDER BY LOAN_NO DESC LIMIT 1').then(([rows, fields]) => {
+    //   val = rows[0]
+    // });
+    // console.log(val);
+    // if(val)
+    // {
+    //   loan_no=val["LOAN_NO"]+1
+    // }
+    // else
+    // {
+    //   loan_no=100200
+    // }
 
 
-    await connection.promise().query(`insert into loan values( "${loan_no}","${args.loans.LOAN_OFFICER_SSN}" ,"${args.loans.BRANCH_ID}","${args.loans.AMOUNT}","${args.loans.LOAN_TYPE}","${args.loans.CREDIT_LIMIT}","${args.loans.CREDIT_RATING}","${args.loans.INTEREST_RATE}" ) ` ).then((result, err) => {
+    await connection.promise().query(`insert into loan values( "1","${args.loans.LOAN_OFFICER_SSN}" ,"${args.loans.BRANCH_ID}","${args.loans.AMOUNT}","${args.loans.LOAN_TYPE}","${args.loans.CREDIT_LIMIT}","${args.loans.CREDIT_RATING}","${args.loans.INTEREST_RATE}" ) ` ).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

@@ -26,20 +26,20 @@ const customerAccountsQueries = {
 const customerAccountsMutations = {
   async createCustomerAccounts(_, args) {
     let res = 'No Data';
-    await connection.promise().query('SELECT UIN FROM customer_accounts ORDER BY UIN DESC LIMIT 1').then(([rows, fields]) => {
-      val = rows[0]
-    });
+    // await connection.promise().query('SELECT UIN FROM customer_accounts ORDER BY UIN DESC LIMIT 1').then(([rows, fields]) => {
+    //   val = rows[0]
+    // });
 
-    if(val)
-    {
-      uin= val["UIN"]+1
-    }
-    else
-    {
-      uin=333333333
-    }
+    // if(val)
+    // {
+    //   uin= val["UIN"]+1
+    // }
+    // else
+    // {
+    //   uin=333333333
+    // }
     
-    await connection.promise().query(`insert into customer_accounts values("${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}","${uin}")`).then((result, err) => {
+    await connection.promise().query(`insert into customer_accounts values("${args.customer_accounts.ACCOUNT_NO}","${args.customer_accounts.CUSTOMER_SSN}","1")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

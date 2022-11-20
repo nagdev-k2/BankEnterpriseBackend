@@ -28,19 +28,19 @@ const dependentsQueries = {
 const dependentsMutations = {
   async createDependents(_, args) {
     let res = 'No Data';
-    await connection.promise().query('SELECT DEP_ID FROM DEPENDENTS ORDER BY DEP_ID DESC LIMIT 1').then(([rows, fields]) => {
-      val = rows[0]
-    });
+    // await connection.promise().query('SELECT DEP_ID FROM DEPENDENTS ORDER BY DEP_ID DESC LIMIT 1').then(([rows, fields]) => {
+    //   val = rows[0]
+    // });
 
-    if(val)
-    {
-      dep_id=val["DEP_ID"]+1
-    }
-    else
-    {
-      dep_id=300600
-    }
-    await connection.promise().query(`insert into dependents values("${dep_id}","${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
+    // if(val)
+    // {
+    //   dep_id=val["DEP_ID"]+1
+    // }
+    // else
+    // {
+    //   dep_id=300600
+    // }
+    await connection.promise().query(`insert into dependents values("1","${args.dependents.EMPLOYEE_SSN}","${args.dependents.DEPENDENT_SSN}" ,"${args.dependents.NAME}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

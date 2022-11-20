@@ -62,7 +62,7 @@ const loanBorrowedMutations = {
     }
     else
     {
-    await connection.promise().query(`insert into loan_borrowed values("${args.loan_borrowed.LOAN_NO}","${args.loan_borrowed.CUSTOMER_SSN}")`).then((result, err) => {
+    await connection.promise().query(`insert into loan_borrowed values("1","${args.loan_borrowed.LOAN_NO}","${args.loan_borrowed.CUSTOMER_SSN}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

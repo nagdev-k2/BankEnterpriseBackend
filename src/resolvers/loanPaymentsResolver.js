@@ -27,19 +27,19 @@ const loanPaymentsQueries = {
 const loanPaymentsMutations = {
   async createLoanPayments(_, args) {
     let res = 'No Data';
-    await connection.promise().query('SELECT TRANS_ID FROM loan_payments ORDER BY TRANS_ID DESC LIMIT 1').then(([rows, fields]) => {
-      val = rows[0]
-    });
+    // await connection.promise().query('SELECT TRANS_ID FROM loan_payments ORDER BY TRANS_ID DESC LIMIT 1').then(([rows, fields]) => {
+    //   val = rows[0]
+    // });
 
-    if(val)
-    {
-      trans_id=val["TRANS_ID"]+1
-    }
-    else
-    {
-      trans_id=200400
-    }
-    await connection.promise().query(`insert into loan_payments values("${args.loan_payments.LOAN_NO}","${args.loan_payments.DATE}","${args.loan_payments.AMOUNT}","${trans_id}")`).then((result, err) => {
+    // if(val)
+    // {
+    //   trans_id=val["TRANS_ID"]+1
+    // }
+    // else
+    // {
+    //   trans_id=200400
+    // }
+    await connection.promise().query(`insert into loan_payments values("${args.loan_payments.LOAN_NO}","${args.loan_payments.DATE}","${args.loan_payments.AMOUNT}","1")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

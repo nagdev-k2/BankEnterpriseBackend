@@ -32,23 +32,23 @@ const assetMutations = {
   async createAsset(_, args) {
     let res = 'No Data';    
 
-    await connection.promise().query('SELECT ASSET_ID FROM assets ORDER BY ASSET_ID DESC LIMIT 1').then(([rows, fields]) => {
-      val = rows[0]
-    });
+    // await connection.promise().query('SELECT ASSET_ID FROM assets ORDER BY ASSET_ID DESC LIMIT 1').then(([rows, fields]) => {
+    //   val = rows[0]
+    // });
 
-    if(val)
-    {
-      res = val['ASSET_ID'].split('_')
-      asset_id = `${res[0]}_0${(parseInt(res[1])+1)}`
-    }
-    else
-    {
-      asset_id="Aid_00"
-    }
+    // if(val)
+    // {
+    //   res = val['ASSET_ID'].split('_')
+    //   asset_id = `${res[0]}_0${(parseInt(res[1])+1)}`
+    // }
+    // else
+    // {
+    //   asset_id="Aid_00"
+    // }
 
 
     const { BRANCH_ID, NAME, TYPE, STATUS, COST, DATE_OF_PURCHASE } = args.asset;
-    await connection.promise().query(`insert into assets values("${asset_id}", "${BRANCH_ID}", "${NAME}", "${TYPE}", "${STATUS}", "${COST}", "${DATE_OF_PURCHASE}")`).then((result, err) => {
+    await connection.promise().query(`insert into assets values("1", "${BRANCH_ID}", "${NAME}", "${TYPE}", "${STATUS}", "${COST}", "${DATE_OF_PURCHASE}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {

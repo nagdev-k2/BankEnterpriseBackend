@@ -1,12 +1,14 @@
 const loanBorrowedType = `
   type LoanBorrowed {
-    LOAN_NO: ID!
+    BORROWER_ID:ID!
+    LOAN_NO: Int
     CUSTOMER_SSN: Int
   }
 
   input LoanBorrowedInput
   {
-    LOAN_NO: ID!
+    BORROWER_ID:Int
+    LOAN_NO: Int!
     CUSTOMER_SSN: Int!
   }
 `;
