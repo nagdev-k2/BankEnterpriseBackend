@@ -15,6 +15,7 @@ const accountsType = `
     BALANCE: Float
     TYPE: String!
     INTEREST_RATE: Float
+    RECENT_ACCESS_DATE:String
     OVERDRAFTS: Int
   }
 `;
