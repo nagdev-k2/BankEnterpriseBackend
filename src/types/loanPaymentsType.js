@@ -9,6 +9,7 @@ const loanPaymentsType = `
 
   input LoanPaymentsInput
   {
+    TRANS_ID:ID
     LOAN_NO: ID!
     DATE: String
     AMOUNT:Float

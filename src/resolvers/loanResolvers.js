@@ -32,7 +32,7 @@ const loanQueries = {
 const loanMutations = {
   async createLoan(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into loan values( "0","${args.loans.LOAN_OFFICER_SSN}" ,"${args.loans.BRANCH_ID}","${args.loans.AMOUNT}","${args.loans.LOAN_TYPE}","${args.loans.CREDIT_LIMIT}","${args.loans.CREDIT_RATING}","${args.loans.INTEREST_RATE}" ) ` ).then(async (result, err) => {
+    await connection.promise().query(`insert into loan values( "0","${args.loans.LOAN_OFFICER_SSN}" ,"${args.loans.BRANCH_ID}","${args.loans.BALANCE}","${args.loans.LOAN_TYPE}","${args.loans.CREDIT_LIMIT}","${args.loans.CREDIT_RATING}","${args.loans.INTEREST_RATE}" ) ` ).then(async (result, err) => {
       if (result) {
         await connection.promise().query('SELECT LOAN_NO FROM LOAN ORDER BY LOAN_NO DESC LIMIT 1').then(async ([rows, fields]) => {
           await connection.promise().query(`INSERT INTO LOAN_BORROWED VALUES ("0", ${rows[0].LOAN_NO}, ${args.loans.CUSTOMER_SSN})`).then(([rows, fields]) => {
