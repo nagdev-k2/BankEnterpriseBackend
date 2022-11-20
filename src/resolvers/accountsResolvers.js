@@ -14,7 +14,7 @@ const defaultAccounts = {
 const accountsQueries = {
   async getAllAccounts() {
     let res = [defaultAccounts]
-    await connection.promise().query('select * from Accounts').then(([rows, fields]) => {
+    await connection.promise().query('select * from Accounts, Customer_Accounts where Accounts.ACCOUNT_NO = Customer_Accounts.ACCOUNT_NO').then(([rows, fields]) => {
       res = rows
     });
     
@@ -22,8 +22,7 @@ const accountsQueries = {
   },
   async getAccountDetails(_, args) {
     let res = defaultAccounts;
-    console.log(args.account_no);
-    await connection.promise().query(`select * from Accounts where ACCOUNT_NO = ${args.account_no}`).then(([rows, fields]) => {
+    await connection.promise().query(`select * from Accounts, Customer_Accounts where Accounts.ACCOUNT_NO = Customer_Accounts.ACCOUNT_NO and ACCOUNT_NO = ${args.account_no}`).then(([rows, fields]) => {
       res = rows[0]
     });
     return res;
@@ -33,26 +32,19 @@ const accountsQueries = {
 const accountsMutations = {
   async createAccounts(_, args) {
     let res = 'No Data';    
-    // await connection.promise().query('SELECT ACCOUNT_NO FROM ACCOUNTS ORDER BY ACCOUNT_NO DESC LIMIT 1').then(([rows, fields]) => {
-    //   val = rows[0]
-    // });
-    // if(val)
-    // {
-    //   acc_no=val["ACCOUNT_NO"]+1
-    // }
-    // else
-    // {
-    //   acc_no=1000
-    // }
     let date=new Date()
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
     let curr=`${year}-${month}-${day}`;
 
-    await connection.promise().query(`insert into Accounts values("1", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${curr}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then((result, err) => {
+    await connection.promise().query(`insert into Accounts values("0", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${curr}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then(async (result, err) => {
       if (result) {
-        res = 'Data inserted successfully';
+        await connection.promise().query('SELECT ACCOUNT_NO FROM ACCOUNTS ORDER BY ACCOUNT_NO DESC LIMIT 1').then(async ([rows, fields]) => {
+          await connection.promise().query(`INSERT INTO CUSTOMER_ACCOUNTS VALUES ("0", ${rows[0].ACCOUNT_NO}, ${args.accounts.CUSTOMER_SSN})`).then(([rows, fields]) => {
+            res = 'Data inserted successfully';
+          });
+        });
       } else {
         res = 'Failed to insert data';
       }
@@ -61,7 +53,6 @@ const accountsMutations = {
   },
   async deleteAccounts(_, args) {
     let res = 'No Data';    
-    console.log(args.accounts);
     await connection.promise().query(`delete from Accounts where ACCOUNT_ID=${args.account_no}`).then((result, err) => {
       if (result) {
         res = 'Data Deleted successfully';

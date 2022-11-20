@@ -24,17 +24,6 @@ const branchQueries = {
   },
 };
 
-const createBranchId = async (city) => {
-  let res = [defaultBranch];
-    await connection.promise().query('SELECT BRANCH_ID FROM Branch ORDER BY BRANCH_ID DESC LIMIT 1').then(([rows, fields]) => {
-      res = rows[0]
-    });
-    res = res['BRANCH_ID'].split('_')
-    res = `${res[0]}_${city.substring(0,4)}_0${(parseInt(res[2])+1)}`
-    console.log(res);
-    return res;
-}
-
 const branchMutations = {
   async createBranch(_, args) {
     let res = 'No Data';
