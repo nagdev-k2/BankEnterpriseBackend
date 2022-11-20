@@ -9,7 +9,6 @@ const defaultBranch = {
 
 const branchQueries = {
   async getAllBranches() {
-    createBranchId()
     let res = [defaultBranch]
     await connection.promise().query('select * from branch').then(([rows, fields]) => {
       res = rows
