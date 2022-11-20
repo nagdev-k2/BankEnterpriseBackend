@@ -47,7 +47,7 @@ const typeDefs = gql`
     getAllLoansBorrowed:[LoanBorrowed]
     getLoanBorrowedDetails(loan_no:ID!):LoanBorrowed
     getAllLoanPayments:[LoanPayments]
-    getLoanPaymentsDetails(loan_no:ID!):LoanPayments
+    getLoanPaymentsDetails(trans_id:ID!):LoanPayments
     getAllRecords:[Records]
     getRecordsDetails(account_no:ID!):Records
     getAllCustomerAccounts:[CustomerAccounts]
