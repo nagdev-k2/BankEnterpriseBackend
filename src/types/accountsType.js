@@ -10,12 +10,13 @@ const accountsType = `
   }
 
   input AccountsInput {
+    ACCOUNT_NO:ID!
     BRANCH_ID: String!
-    BALANCE: Float!
+    BALANCE: Float
     RECENT_ACCESS_DATE: String!
     TYPE: String!
-    INTEREST_RATE: Float!
-    OVERDRAFTS: Int!
+    INTEREST_RATE: Float
+    OVERDRAFTS: Int
   }
 `;
 

@@ -42,7 +42,13 @@ const accountsMutations = {
     {
       acc_no=1000
     }
-    await connection.promise().query(`insert into Accounts values("${acc_no}", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${args.accounts.RECENT_ACCESS_DATE}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then((result, err) => {
+    let date=new Date()
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let curr=`${year}-${month}-${day}`;
+
+    await connection.promise().query(`insert into Accounts values("${acc_no}", "${args.accounts.BRANCH_ID}", "${args.accounts.BALANCE}", "${curr}", "${args.accounts.TYPE}", "${args.accounts.INTEREST_RATE}", "${args.accounts.OVERDRAFTS}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
@@ -65,8 +71,12 @@ const accountsMutations = {
   },
   async updateAccounts(_, args) {
     let res = 'No Data';    
-    console.log(args.accounts);
-    await connection.promise().query(`update Accounts set BALANCE=${args.accounts.BALANCE},RECENT_ACCESS_DATE= ${args.accounts.RECENT_ACCESS_DATE},TYPE=${args.accounts.TYPE},INTEREST_RATE=${args.accounts.INTEREST_RATE},OVERDRAFTS=${args.accounts.OVERDRAFTS}  where ACCOUNT_ID=${args.accounts.ACCOUNT_NO}`).then((result, err) => {
+    let date=new Date()
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let curr=`${year}-${month}-${day}`;
+    await connection.promise().query(`update Accounts set RECENT_ACCESS_DATE= "${curr}",TYPE="${args.accounts.TYPE}",INTEREST_RATE="${args.accounts.INTEREST_RATE}",OVERDRAFTS="${args.accounts.OVERDRAFTS}"  where ACCOUNT_NO="${args.accounts.ACCOUNT_NO}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
