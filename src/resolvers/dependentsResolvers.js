@@ -52,7 +52,7 @@ const dependentsMutations = {
 
   async deleteDependents(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`delete from dependents where DEP_ID=${args.dep_id}`).then((result, err) => {
+    await connection.promise().query(`delete from dependents where DEP_ID="${args.dep_id}"`).then((result, err) => {
       if (result) {
         res = 'Data Deleted successfully';
       } else {
@@ -63,7 +63,7 @@ const dependentsMutations = {
   },
   async updateDependents(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`update loan set EMPLOYEE_SSN=${args.dependents.EMPLOYEE_SSN},DEPENDENT_SSN=${args.dependents.DEPENDENT_SSN},NAME=EMPLOYEE_SSN=${args.dependents.NAME}`).then((result, err) => {
+    await connection.promise().query(`update dependents set EMPLOYEE_SSN="${args.dependents.EMPLOYEE_SSN}",DEPENDENT_SSN="${args.dependents.DEPENDENT_SSN}",NAME="${args.dependents.NAME}" where DEP_ID="${args.dependents.DEP_ID}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
