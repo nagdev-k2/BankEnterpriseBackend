@@ -13,7 +13,6 @@ const accountsType = `
     ACCOUNT_NO:ID!
     BRANCH_ID: String!
     BALANCE: Float
-    RECENT_ACCESS_DATE: String!
     TYPE: String!
     INTEREST_RATE: Float
     OVERDRAFTS: Int
