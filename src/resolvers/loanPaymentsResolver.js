@@ -39,7 +39,7 @@ const loanPaymentsMutations = {
     // {
     //   trans_id=200400
     // }
-    await connection.promise().query(`insert into loan_payments values("${args.loan_payments.LOAN_NO}","${args.loan_payments.DATE}","${args.loan_payments.AMOUNT}","1")`).then((result, err) => {
+    await connection.promise().query(`insert into loan_payments values("0","${args.loan_payments.LOAN_NO}","${args.loan_payments.DATE}","${args.loan_payments.AMOUNT}","1")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
