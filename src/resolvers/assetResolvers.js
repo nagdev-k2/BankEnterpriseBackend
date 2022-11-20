@@ -48,7 +48,7 @@ const assetMutations = {
 
 
     const { BRANCH_ID, NAME, TYPE, STATUS, COST, DATE_OF_PURCHASE } = args.asset;
-    await connection.promise().query(`insert into assets values("1", "${BRANCH_ID}", "${NAME}", "${TYPE}", "${STATUS}", "${COST}", "${DATE_OF_PURCHASE}")`).then((result, err) => {
+    await connection.promise().query(`insert into assets (BRANCH_ID,NAME,TYPE,STATUS,COST,DATE_OF_PURCHASE) values( "${BRANCH_ID}", "${NAME}", "${TYPE}", "${STATUS}", "${COST}", "${DATE_OF_PURCHASE}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
