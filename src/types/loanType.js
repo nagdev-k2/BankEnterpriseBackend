@@ -4,7 +4,7 @@ const loanType = `
     LOAN_OFFICER_SSN: Int
     CUSTOMER_SSN: Int
     BRANCH_ID: String
-    AMOUNT: Float
+    BALANCE: Float
     LOAN_TYPE: String
     CREDIT_LIMIT: Int
     CREDIT_RATING:Float
@@ -16,7 +16,7 @@ const loanType = `
     LOAN_OFFICER_SSN: Int!
     BRANCH_ID: String!
     CUSTOMER_SSN: Int!
-    AMOUNT: Float!
+    AMOUNT: Float
     LOAN_TYPE: String!
     CREDIT_LIMIT: Int
     CREDIT_RATING:Float

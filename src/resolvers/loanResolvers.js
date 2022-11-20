@@ -4,7 +4,7 @@ const defaultLoan = {
   LOAN_NO: 0,
   LOAN_OFFICER_SSN: 0,
   BRANCH_ID:'NA',
-  AMOUNT: 0.0,
+  BALANCE: 0.0,
   LOAN_TYPE:'NA',
   CREDIT_LIMIT:0,
   CREDIT_RATING:0.0,
@@ -60,7 +60,7 @@ const loanMutations = {
   },
   async updateLoan(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`update loan set AMOUNT="${args.loan.AMOUNT}",LOAN_TYPE="${args.loan.LOAN_TYPE}",CREDIT_LIMIT="${args.loan.CREDIT_LIMIT}",CREDIT_RATING="${args.loan.CREDIT_RATING}",INTEREST_RATE="${args.loan.INTEREST_RATE}" where LOAN_NO="${args.loan.LOAN_NO}"`).then((result, err) => {
+    await connection.promise().query(`update loan set AMOUNT="${args.loan.BALANCE}",LOAN_TYPE="${args.loan.LOAN_TYPE}",CREDIT_LIMIT="${args.loan.CREDIT_LIMIT}",CREDIT_RATING="${args.loan.CREDIT_RATING}",INTEREST_RATE="${args.loan.INTEREST_RATE}" where LOAN_NO="${args.loan.LOAN_NO}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
