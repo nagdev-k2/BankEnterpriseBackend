@@ -13,7 +13,6 @@ const defaultAccounts = {
 
 const accountsQueries = {
   async getAllAccounts() {
-    createAccountId()
     let res = [defaultAccounts]
     await connection.promise().query('select * from Accounts').then(([rows, fields]) => {
       res = rows
@@ -28,11 +27,6 @@ const accountsQueries = {
     return res;
   },
 };
-
-// const createAccountId = async () => {
-//   let time = new Date()
-//   return time.getTime();
-// }
 
 const accountsMutations = {
   async createAccounts(_, args) {
