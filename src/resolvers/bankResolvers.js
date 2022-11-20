@@ -8,7 +8,6 @@ const defaultBank = {
 const bankQueries = {
   async getAllBanks() {
     let res = [defaultBank];
-    createBankId();
     await connection.promise().query('select * from bank').then(([rows, fields]) => {
       res = rows
     });
