@@ -73,7 +73,7 @@ const bankMutations = {
   },
   async deleteBank(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`delete from bank where BANK_ID=${args.bank_id}`).then((result, err) => {
+    await connection.promise().query(`delete from bank where BANK_ID="${args.bank_id}"`).then((result, err) => {
       if (result) {
         res = 'Data Delete successfully';
       } else {
@@ -83,7 +83,7 @@ const bankMutations = {
     return res;
   },async updateBank(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`Update bank set BANK_NAME=${args.bank.BANK_NAME} where BANK_ID=${args.bank.BANK_ID}`).then((result, err) => {
+    await connection.promise().query(`Update bank set BANK_NAME="${args.bank.BANK_NAME}" where BANK_ID="${args.bank.BANK_ID}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
