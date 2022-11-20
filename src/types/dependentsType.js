@@ -7,7 +7,7 @@ const dependentsType = `
   }
 
   input DependentsInput {
-    DEP_ID:Int
+    DEP_ID:ID
     EMPLOYEE_SSN:Int!
     DEPENDENT_SSN:Int
     NAME:String!
