@@ -10,7 +10,8 @@ const assetType = `
   }
 
   input AssetInput {
-    BRANCH_ID: String!
+    BRANCH_ID: String
+    ASSET_ID: ID!
     NAME: String
     TYPE: String
     STATUS: String
