@@ -17,11 +17,13 @@ const accountsQueries = {
     await connection.promise().query('select * from Accounts').then(([rows, fields]) => {
       res = rows
     });
+    
     return res;
   },
   async getAccountDetails(_, args) {
     let res = defaultAccounts;
-    await connection.promise().query(`select * from Accounts where ACCOUNT_NO = '${args.account_no}'`).then(([rows, fields]) => {
+    console.log(args.account_no);
+    await connection.promise().query(`select * from Accounts where ACCOUNT_NO = ${args.account_no}`).then(([rows, fields]) => {
       res = rows[0]
     });
     return res;

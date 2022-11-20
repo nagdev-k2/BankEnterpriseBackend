@@ -13,7 +13,6 @@ const defaultAsset = {
 
 const assetQueries = {
   async getAllAssets() {
-    createAssetId()
     let res = [defaultAsset]
     await connection.promise().query('select * from Assets').then(([rows, fields]) => {
       res = rows
