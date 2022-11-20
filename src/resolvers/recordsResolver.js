@@ -28,7 +28,24 @@ const recordsQueries = {
 const recordsMutations = {
   async createRecords(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`insert into records values("${args.records.ACCOUNT_NO}","${args.records.DATE}" ,"${args.records.TYPE}","${args.records.AMOUNT}")`).then((result, err) => {
+    await connection.promise().query('SELECT RECORD_NO FROM RECORDS ORDER BY RECORD_NO DESC LIMIT 1').then(([rows, fields]) => {
+      val = rows[0]
+    });
+    if(val)
+    {
+      record_no = val['RECORD_NO']+1
+    }
+    else
+    {
+      record_no=10000
+    }
+    let date=new Date()
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let curr=`${year}-${month}-${day}`;
+
+    await connection.promise().query(`insert into records values("${record_no}","${args.records.ACCOUNT_NO}","${curr}" ,"${args.records.TYPE}","${args.records.AMOUNT}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
       } else {
@@ -37,29 +54,6 @@ const recordsMutations = {
     });
     return res;
   },
-  async deleteRecords(_, args) {
-    let res = 'No Data';
-    await connection.promise().query(`delete from records where ACCOUNT_NO=${args.account_no} `).then((result, err) => {
-      if (result) {
-        res = 'Data Deleted successfully';
-      } else {
-        res = 'Failed to Delete data';
-      }
-    });
-    return res;
-  },
-  async updateRecords(_, args) {
-    let res = 'No Data';
-    await connection.promise().query(`update records set DATE=${args.records.DATE},TYPE=${args.records.TYPE},AMOUNT=${args.records.AMOUNT} where ACCOUNT_NO=${args.records.ACCOUNT_NO} `).then((result, err) => {
-      if (result) {
-        res = 'Data inserted successfully';
-      } else {
-        res = 'Failed to insert data';
-      }
-    });
-    return res;
-  },
-  
 };
 
 module.exports = { recordsQueries, recordsMutations };

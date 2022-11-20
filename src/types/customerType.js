@@ -13,8 +13,8 @@ const customerType = `
     NAME: String!
     STREET: String!
     CITY: String!
-    ASSOCIATED_EMPLOYEE_SSN: Int!
-    ASSOCIATED_EMPLOYEE_TYPE: String!
+    ASSOCIATED_EMPLOYEE_SSN: Int
+    ASSOCIATED_EMPLOYEE_TYPE: String
   }
 
 `;

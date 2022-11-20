@@ -1,5 +1,6 @@
 const recordsType = `
   type Records {
+    RECORD_NO:ID!
     ACCOUNT_NO: ID!
     DATE: String
     TYPE: String
@@ -8,7 +9,7 @@ const recordsType = `
 
   input RecordsInput {
     ACCOUNT_NO: ID!
-    DATE: String!
+    DATE: String
     TYPE: String!
     AMOUNT: Float!
   }

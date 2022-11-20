@@ -4,6 +4,7 @@ const bankType = `
     BANK_NAME: String
   }
   input BankInput {
+    BANK_ID: String
     BANK_NAME: String!
   }
 `;

@@ -2,6 +2,7 @@ const accountsType = `
   type Accounts {
     ACCOUNT_NO: ID!
     BRANCH_ID: String
+    CUSTOMER_SSN: Int
     BALANCE: Float
     RECENT_ACCESS_DATE: String
     TYPE: String
@@ -10,12 +11,14 @@ const accountsType = `
   }
 
   input AccountsInput {
+    ACCOUNT_NO:ID
     BRANCH_ID: String!
-    BALANCE: Float!
-    RECENT_ACCESS_DATE: String!
+    CUSTOMER_SSN: Int
+    BALANCE: Float
     TYPE: String!
-    INTEREST_RATE: Float!
-    OVERDRAFTS: Int!
+    INTEREST_RATE: Float
+    RECENT_ACCESS_DATE:String
+    OVERDRAFTS: Int
   }
 `;
 
