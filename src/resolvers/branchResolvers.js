@@ -74,7 +74,7 @@ const branchMutations = {
   },
   async deleteBranch(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`delete from branch where BRANCH_ID=${args.branch_id}`).then((result, err) => {
+    await connection.promise().query(`delete from branch where BRANCH_ID="${args.branch_id}"`).then((result, err) => {
       if (result) {
         res = 'Data Delete successfully';
       } else {
@@ -85,7 +85,7 @@ const branchMutations = {
   },
   async updateBranch(_, args) {
     let res = 'No Data';
-    await connection.promise().query(`update branch set BRANCH_NAME=${args.branch.BRANCH_NAME},CITY=${args.branch.CITY} where BRANCH_ID=${args.branch.BRANCH_ID}`).then((result, err) => {
+    await connection.promise().query(`update branch set BRANCH_NAME="${args.branch.BRANCH_NAME}",CITY="${args.branch.CITY}" where BRANCH_ID="${args.branch.BRANCH_ID}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
