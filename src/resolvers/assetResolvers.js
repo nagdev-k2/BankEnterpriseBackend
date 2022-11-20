@@ -29,16 +29,6 @@ const assetQueries = {
   },
 };
 
-const createAssetId = async () => {
-  let res = [defaultAsset];
-  await connection.promise().query('SELECT ASSET_ID FROM assets ORDER BY ASSET_ID DESC LIMIT 1').then(([rows, fields]) => {
-    res = rows[0]
-  });
-  res = res['ASSET_ID'].split('_')
-  res = `${res[0]}_0${(parseInt(res[1])+1)}`
-  return res;
-}
-
 const assetMutations = {
   async createAsset(_, args) {
     let res = 'No Data';    
