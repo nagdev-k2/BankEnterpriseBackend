@@ -56,7 +56,7 @@ const employeeMutations = {
   },
   async updateEmployee(_, args) {
     let res = 'No Data';    
-    await connection.promise().query(`update employee set NAME=${args.employee.NAME},TELEPHONE=${args.employee.TELEPHONE},ROLE=${args.employee.ROLE},START_DATE=${args.employee.START_DATE} where SSN=${args.employee.SSN}`).then((result, err) => {
+    await connection.promise().query(`update employee set NAME="${args.employee.NAME}",TELEPHONE="${args.employee.TELEPHONE}",ROLE="${args.employee.ROLE}",START_DATE="${args.employee.START_DATE}" where SSN="${args.employee.SSN}"`).then((result, err) => {
       if (result) {
         res = 'Data Updated successfully';
       } else {
