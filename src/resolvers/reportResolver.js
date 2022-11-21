@@ -24,9 +24,9 @@ const reportQueries = {
     });
     return res;
   },
-  async getRecordsDetails(_, args) {
+  async getWeeklyReport(_, args) {
     let res = [];
-    await connection.promise().query(`select DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) AS WEEK_START_DATE ,loan.LOAN_OFFICER_SSN,count(loan.LOAN_OFFICER_SSN)as "No_Of_Loans_Handled",loan.LOAN_TYPE, SUM(LOAN_PAYMENTS.AMOUNT) AS AMOUNT_DEPOSITED from loan,loan_payments where loan.loan_no=loan_payments.loan_no and loan_payments.Date between DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) and CURDATE() group by loan.LOAN_OFFICER_SSN;'`).then(([rows, fields]) => {
+    await connection.promise().query(`select LOAN.BRANCH_ID,DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) AS WEEK_START_DATE ,loan.LOAN_OFFICER_SSN,count(loan.LOAN_OFFICER_SSN)as "NO_OF_LOANS_HANDLED",loan.LOAN_TYPE, SUM(LOAN_PAYMENTS.AMOUNT) AS AMOUNT_DEPOSITED from loan,loan_payments where loan.loan_no=loan_payments.loan_no and loan_payments.Date between DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) and CURDATE() group by loan.LOAN_OFFICER_SSN;'`).then(([rows, fields]) => {
       res = rows[0]
     });
     return res;

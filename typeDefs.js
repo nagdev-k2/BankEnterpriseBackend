@@ -56,6 +56,7 @@ const typeDefs = gql`
     getEmployeeDetails(SSN:ID!): Employee
     getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
     getBranchReport: [BranchReport]
+    getWeeklyReport:[WeeklyReport]
   }
 
   type Mutation {
