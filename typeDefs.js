@@ -10,9 +10,8 @@ const {loanType}=require("./src/types/loanType")
 const {loanBorrowedType}=require("./src/types/loanBorrowedType")
 const {loanPaymentsType}=require("./src/types/loanPaymentsType")
 const {recordsType}=require("./src/types/recordsType")
-const { customerAccountsType }=require("./src/types/customerAccountsType")
-
-
+const { customerAccountsType }=require("./src/types/customerAccountsType");
+const { reportType } = require('./src/types/reportType');
 
 const typeDefs = gql`
   scalar DateTime
@@ -28,6 +27,7 @@ const typeDefs = gql`
   ${loanPaymentsType}
   ${recordsType}
   ${customerAccountsType}
+  ${reportType}
 
   type Query {
     getAllBanks: [Bank]
@@ -55,6 +55,7 @@ const typeDefs = gql`
     getAllEmployees: [Employee]
     getEmployeeDetails(SSN:ID!): Employee
     getLoanBorrowedDetailsByCustomer(customer_ssn:ID!):[Int]
+    getBranchReport: [BranchReport]
   }
 
   type Mutation {
