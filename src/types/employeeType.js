@@ -7,7 +7,7 @@ const employeeType = `
     ROLE: String
     MANAGER_SSN: Int
     START_DATE: String
-    LENGTH_OF_EMPLOYMENT:Int
+    LENGTH_OF_EMPLOYMENT:String
   }
   input EmployeeInput {
     SSN: ID!
@@ -17,7 +17,7 @@ const employeeType = `
     ROLE: String!
     MANAGER_SSN: Int
     START_DATE: String!
-    LENGTH_OF_EMPLOYMENT:Int
+    LENGTH_OF_EMPLOYMENT:String
   }
 `;
 
