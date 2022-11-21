@@ -37,7 +37,7 @@ const employeeMutations = {
     await connection.promise().query(`insert into Employee values("${SSN}", "${BRANCH_ID}" , "${NAME}", "${TELEPHONE}", "${ROLE}", "${START_DATE}", "${MANAGER_SSN}","${experience}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';
-      } else {
+      }else {
         res = 'Failed to insert data';
       }
     });

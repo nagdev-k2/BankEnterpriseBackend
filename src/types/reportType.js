@@ -9,7 +9,11 @@ const reportType = `
 
   type WeeklyReport {
     BRANCH_ID: ID!
-    EMPLOYEE_SSN: Int
+    WEEK_START_DATE:String
+    LOAN_OFFICER_SSN:Int
+    NO_OF_LOANS_HANDLED:Int
+    LOAN_TYPE:String
+    AMOUNT_DEPOSITED:Float
   }
 `;
 module.exports = { reportType };
