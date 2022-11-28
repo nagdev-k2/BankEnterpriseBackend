@@ -43,7 +43,7 @@ const branchMutations = {
       if(val)
       {
         res = val['BRANCH_ID'].split('_')
-        branch_id = `BR_${val["BANK_ID"]}_${args.branch.CITY.substring(0,4)}_0${(parseInt(res[(res.length)-1])+1)}`
+        branch_id = `BR_${args.branch.BANK_ID}_${args.branch.CITY.substring(0,4)}_0${(parseInt(res[(res.length)-1])+1)}`
       }
       else
       {

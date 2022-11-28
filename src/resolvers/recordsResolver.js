@@ -45,6 +45,7 @@ const recordsMutations = {
     let year = date.getFullYear();
     let curr=`${year}-${month}-${day}`;
 
+    
     await connection.promise().query(`insert into records (ACCOUNT_NO,DATE,TYPE,AMOUNT) values("${args.records.ACCOUNT_NO}","${curr}" ,"${args.records.TYPE}","${args.records.AMOUNT}")`).then((result, err) => {
       if (result) {
         res = 'Data inserted successfully';

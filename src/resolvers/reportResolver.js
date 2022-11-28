@@ -27,7 +27,7 @@ const reportQueries = {
   async getWeeklyReport(_, args) {
     let res = [];
     await connection.promise().query(`select LOAN.BRANCH_ID, DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), '%Y-%m-%d' ) AS WEEK_START_DATE ,LOAN.LOAN_OFFICER_SSN,count(LOAN.LOAN_OFFICER_SSN) as NO_OF_LOANS_HANDLED,LOAN.LOAN_TYPE, SUM(LOAN_PAYMENTS.AMOUNT) AS AMOUNT_DEPOSITED from LOAN,LOAN_PAYMENTS where LOAN.LOAN_NO=LOAN_PAYMENTS.LOAN_NO and LOAN_PAYMENTS.DATE between DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) and CURDATE() group by LOAN.BRANCH_ID, LOAN.LOAN_TYPE, LOAN.LOAN_OFFICER_SSN`).then(([rows, fields]) => {
-      console.log(rows);
+      
       res = rows
     });
     return res;
